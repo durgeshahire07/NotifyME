@@ -5,6 +5,7 @@ import requests
 import json
 from tkinter import ttk
 
+
 def Weather_Report():
 
     label1.grid_forget()
@@ -175,6 +176,10 @@ def Weather_Report():
         y = api['main']
         current_temprature = y['temp']
         humidity = y['humidity']
+
+        toaster = ToastNotifier()
+        toaster.show_toast("Weather","Temprature-"+str(current_temprature)+" deg. C\nHumidity-"+str(humidity) , icon_path=None)
+
         # Adding the received info into the screen
         lable_temp.configure(text=current_temprature)
         lable_humidity.configure(text=humidity)
@@ -203,7 +208,7 @@ master.minsize(400, 450)
 
 #mainmenu
 mainmenu = Menu(master)
-mainmenu.add_command(label="Weather Report",command=Weather_Reports)
+mainmenu.add_command(label="Weather Report",command=Weather_Report)
 mainmenu.add_command(label="Exit", command=quit)
 master.config(menu=mainmenu)
 
